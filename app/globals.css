@@ -1,0 +1,242 @@
+@import "tailwindcss";
+
+/*
+ * Cosmic Watch — Space Theme Design System
+ * Immersive dark-mode, responsive, cosmic aesthetics
+ */
+
+:root {
+  /* ── TRUE BLACK space palette ── */
+  --cw-bg-primary: #000000;
+  --cw-bg-secondary: #050505;
+  --cw-bg-card: #0a0a0a;
+  --cw-bg-card-hover: #111111;
+  --cw-border: #1a1a1a;
+  --cw-border-hover: #2a2a2a;
+
+  /* Text — high contrast on pure black */
+  --cw-text-primary: #f0f0f0;
+  --cw-text-secondary: #a0a0a0;
+  --cw-text-muted: #555555;
+
+  /* Accent — cosmic blue/purple */
+  --cw-accent: #6c63ff;
+  --cw-accent-hover: #7f78ff;
+  --cw-accent-glow: rgba(108, 99, 255, 0.25);
+
+  /* Status colors */
+  --cw-danger: #ff4d6a;
+  --cw-warning: #ffb84d;
+  --cw-success: #4dff91;
+  --cw-info: #4dc3ff;
+
+  /* Sizing */
+  --cw-radius: 12px;
+  --cw-radius-sm: 8px;
+  --cw-radius-lg: 16px;
+}
+
+@theme inline {
+  --color-background: var(--cw-bg-primary);
+  --color-foreground: var(--cw-text-primary);
+  --color-card: var(--cw-bg-card);
+  --color-card-hover: var(--cw-bg-card-hover);
+  --color-border: var(--cw-border);
+  --color-accent: var(--cw-accent);
+  --color-accent-hover: var(--cw-accent-hover);
+  --color-muted: var(--cw-text-muted);
+  --color-secondary: var(--cw-text-secondary);
+  --color-danger: var(--cw-danger);
+  --color-warning: var(--cw-warning);
+  --color-success: var(--cw-success);
+  --color-info: var(--cw-info);
+  --font-sans: var(--font-space-grotesk);
+  --font-mono: var(--font-jetbrains-mono);
+  --font-display: var(--font-orbitron);
+  --font-body: var(--font-jetbrains-mono);
+}
+
+/* ── Base ──────────────────────────────────────────────── */
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--cw-border) transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #000000;
+  color: var(--cw-text-primary);
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+}
+
+/* ── Glow effects ─────────────────────────────────────── */
+
+.glow-accent {
+  box-shadow:
+    0 0 20px var(--cw-accent-glow),
+    0 0 40px rgba(108, 99, 255, 0.1);
+}
+
+.glow-text {
+  text-shadow: 0 0 20px var(--cw-accent-glow);
+}
+
+/* ── Glass card ────────────────────────────────────────── */
+
+.glass {
+  background: rgba(10, 10, 10, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--cw-border);
+}
+
+/* ── Focus ring ────────────────────────────────────────── */
+
+.focus-ring:focus-visible {
+  outline: 2px solid var(--cw-accent);
+  outline-offset: 2px;
+}
+
+/* ── Animations ────────────────────────────────────────── */
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.6s ease-out forwards;
+}
+
+/* ── Auth card scale-in entrance ──────────────────────── */
+
+@keyframes auth-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-auth-scale-in {
+  animation: auth-scale-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ── Magic UI: Meteor animation ───────────────────────── */
+
+@keyframes meteor {
+  0% {
+    transform: rotate(215deg) translateX(0);
+    opacity: 1;
+  }
+
+  70% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: rotate(215deg) translateX(-600px);
+    opacity: 0;
+  }
+}
+
+.animate-meteor {
+  animation: meteor 5s linear infinite;
+}
+
+/* ── Magic UI: Shimmer spin ───────────────────────────── */
+
+@keyframes shimmer-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ── Magic UI: Border beam ────────────────────────────── */
+
+@keyframes border-beam {
+  from {
+    --border-beam-angle: 0;
+  }
+
+  to {
+    --border-beam-angle: 360;
+  }
+}
+
+@property --border-beam-angle {
+  syntax: "<number>";
+  initial-value: 0;
+  inherits: false;
+}
+
+.animate-border-beam {
+  animation: border-beam var(--border-beam-duration, 12s) linear infinite;
+  animation-delay: var(--border-beam-delay, 0s);
+}
